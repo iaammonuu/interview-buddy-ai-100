@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
+import { Route as ApiInterviewFinishRouteImport } from './routes/api/interview/finish'
 import { Route as ApiInterviewMessageRouteImport } from './routes/api/interview/message'
 import { Route as ApiInterviewStartRouteImport } from './routes/api/interview/start'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApiHealthRoute = ApiHealthRouteImport.update({
   id: '/api/health',
   path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInterviewFinishRoute = ApiInterviewFinishRouteImport.update({
+  id: '/api/interview/finish',
+  path: '/api/interview/finish',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiInterviewMessageRoute = ApiInterviewMessageRouteImport.update({
@@ -38,12 +44,14 @@ const ApiInterviewStartRoute = ApiInterviewStartRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/interview/finish': typeof ApiInterviewFinishRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
   '/api/interview/start': typeof ApiInterviewStartRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/interview/finish': typeof ApiInterviewFinishRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
   '/api/interview/start': typeof ApiInterviewStartRoute
 }
@@ -51,19 +59,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/interview/finish': typeof ApiInterviewFinishRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
   '/api/interview/start': typeof ApiInterviewStartRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/api/health' | '/api/interview/message' | '/api/interview/start'
+    | '/'
+    | '/api/health'
+    | '/api/interview/finish'
+    | '/api/interview/message'
+    | '/api/interview/start'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/health' | '/api/interview/message' | '/api/interview/start'
+  to:
+    | '/'
+    | '/api/health'
+    | '/api/interview/finish'
+    | '/api/interview/message'
+    | '/api/interview/start'
   id:
     | '__root__'
     | '/'
     | '/api/health'
+    | '/api/interview/finish'
     | '/api/interview/message'
     | '/api/interview/start'
   fileRoutesById: FileRoutesById
@@ -71,6 +90,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiHealthRoute: typeof ApiHealthRoute
+  ApiInterviewFinishRoute: typeof ApiInterviewFinishRoute
   ApiInterviewMessageRoute: typeof ApiInterviewMessageRoute
   ApiInterviewStartRoute: typeof ApiInterviewStartRoute
 }
@@ -89,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/api/health'
       fullPath: '/api/health'
       preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/interview/finish': {
+      id: '/api/interview/finish'
+      path: '/api/interview/finish'
+      fullPath: '/api/interview/finish'
+      preLoaderRoute: typeof ApiInterviewFinishRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/interview/message': {
@@ -111,6 +138,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiHealthRoute: ApiHealthRoute,
+  ApiInterviewFinishRoute: ApiInterviewFinishRoute,
   ApiInterviewMessageRoute: ApiInterviewMessageRoute,
   ApiInterviewStartRoute: ApiInterviewStartRoute,
 }
