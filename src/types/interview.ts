@@ -2,6 +2,7 @@ export interface CurriculumDay {
   day: number;
   module: string;
   title: string;
+  type?: string;
   topics: string[];
   objectives: string[];
   tools: string[];
@@ -11,7 +12,7 @@ export interface CompletedMission {
   day: number;
   title: string;
   attempts: number;
-  selfRating: number; // 1-5, learner reported
+  selfRating: number; // 1-5, derived from attempts
 }
 
 export interface Candidate {
@@ -19,12 +20,17 @@ export interface Candidate {
   name: string;
   headline: string;
   background: string;
+  jobRole?: string;
+  yearsExperience?: number;
+  education?: string;
+  status?: string;
   progressPercent: number;
   completedMissions: CompletedMission[];
   skippedDays: number[];
   learningSignals: string[];
   recommendedFocusDays: number[];
 }
+
 
 export type QuestionType =
   | "concept"
