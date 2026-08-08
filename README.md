@@ -986,17 +986,7 @@ After implementation:
 
 7. Summarize what was built, how to run it, and any assumptions made.
 
-This project was built with [Lovable](https://lovable.dev).
-
 **Live app**: https://interview-buddy-ai-100.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/cbe6897a-50a8-41bc-98d2-209dbd06d77d).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
