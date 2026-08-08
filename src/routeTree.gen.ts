@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
+import { Route as ApiInterviewRouteImport } from './routes/api/interview'
 import { Route as InterviewCandidateIdRouteImport } from './routes/interview.$candidateId'
 import { Route as ApiInterviewFinishRouteImport } from './routes/api/interview/finish'
 import { Route as ApiInterviewMessageRouteImport } from './routes/api/interview/message'
@@ -26,30 +27,36 @@ const ApiHealthRoute = ApiHealthRouteImport.update({
   path: '/api/health',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiInterviewRoute = ApiInterviewRouteImport.update({
+  id: '/api/interview',
+  path: '/api/interview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InterviewCandidateIdRoute = InterviewCandidateIdRouteImport.update({
   id: '/interview/$candidateId',
   path: '/interview/$candidateId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiInterviewFinishRoute = ApiInterviewFinishRouteImport.update({
-  id: '/api/interview/finish',
-  path: '/api/interview/finish',
-  getParentRoute: () => rootRouteImport,
+  id: '/finish',
+  path: '/finish',
+  getParentRoute: () => ApiInterviewRoute,
 } as any)
 const ApiInterviewMessageRoute = ApiInterviewMessageRouteImport.update({
-  id: '/api/interview/message',
-  path: '/api/interview/message',
-  getParentRoute: () => rootRouteImport,
+  id: '/message',
+  path: '/message',
+  getParentRoute: () => ApiInterviewRoute,
 } as any)
 const ApiInterviewStartRoute = ApiInterviewStartRouteImport.update({
-  id: '/api/interview/start',
-  path: '/api/interview/start',
-  getParentRoute: () => rootRouteImport,
+  id: '/start',
+  path: '/start',
+  getParentRoute: () => ApiInterviewRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/interview': typeof ApiInterviewRouteWithChildren
   '/interview/$candidateId': typeof InterviewCandidateIdRoute
   '/api/interview/finish': typeof ApiInterviewFinishRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/interview': typeof ApiInterviewRouteWithChildren
   '/interview/$candidateId': typeof InterviewCandidateIdRoute
   '/api/interview/finish': typeof ApiInterviewFinishRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/health': typeof ApiHealthRoute
+  '/api/interview': typeof ApiInterviewRouteWithChildren
   '/interview/$candidateId': typeof InterviewCandidateIdRoute
   '/api/interview/finish': typeof ApiInterviewFinishRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/api/health'
+    | '/api/interview'
     | '/interview/$candidateId'
     | '/api/interview/finish'
     | '/api/interview/message'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/api/health'
+    | '/api/interview'
     | '/interview/$candidateId'
     | '/api/interview/finish'
     | '/api/interview/message'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/api/health'
+    | '/api/interview'
     | '/interview/$candidateId'
     | '/api/interview/finish'
     | '/api/interview/message'
@@ -102,10 +114,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiHealthRoute: typeof ApiHealthRoute
+  ApiInterviewRoute: typeof ApiInterviewRouteWithChildren
   InterviewCandidateIdRoute: typeof InterviewCandidateIdRoute
-  ApiInterviewFinishRoute: typeof ApiInterviewFinishRoute
-  ApiInterviewMessageRoute: typeof ApiInterviewMessageRoute
-  ApiInterviewStartRoute: typeof ApiInterviewStartRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -124,6 +134,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiHealthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/interview': {
+      id: '/api/interview'
+      path: '/api/interview'
+      fullPath: '/api/interview'
+      preLoaderRoute: typeof ApiInterviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/interview/$candidateId': {
       id: '/interview/$candidateId'
       path: '/interview/$candidateId'
@@ -133,35 +150,49 @@ declare module '@tanstack/react-router' {
     }
     '/api/interview/finish': {
       id: '/api/interview/finish'
-      path: '/api/interview/finish'
+      path: '/finish'
       fullPath: '/api/interview/finish'
       preLoaderRoute: typeof ApiInterviewFinishRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ApiInterviewRoute
     }
     '/api/interview/message': {
       id: '/api/interview/message'
-      path: '/api/interview/message'
+      path: '/message'
       fullPath: '/api/interview/message'
       preLoaderRoute: typeof ApiInterviewMessageRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ApiInterviewRoute
     }
     '/api/interview/start': {
       id: '/api/interview/start'
-      path: '/api/interview/start'
+      path: '/start'
       fullPath: '/api/interview/start'
       preLoaderRoute: typeof ApiInterviewStartRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ApiInterviewRoute
     }
   }
 }
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ApiHealthRoute: ApiHealthRoute,
-  InterviewCandidateIdRoute: InterviewCandidateIdRoute,
+interface ApiInterviewRouteChildren {
+  ApiInterviewFinishRoute: typeof ApiInterviewFinishRoute
+  ApiInterviewMessageRoute: typeof ApiInterviewMessageRoute
+  ApiInterviewStartRoute: typeof ApiInterviewStartRoute
+}
+
+const ApiInterviewRouteChildren: ApiInterviewRouteChildren = {
   ApiInterviewFinishRoute: ApiInterviewFinishRoute,
   ApiInterviewMessageRoute: ApiInterviewMessageRoute,
   ApiInterviewStartRoute: ApiInterviewStartRoute,
+}
+
+const ApiInterviewRouteWithChildren = ApiInterviewRoute._addFileChildren(
+  ApiInterviewRouteChildren,
+)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  ApiHealthRoute: ApiHealthRoute,
+  ApiInterviewRoute: ApiInterviewRouteWithChildren,
+  InterviewCandidateIdRoute: InterviewCandidateIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
