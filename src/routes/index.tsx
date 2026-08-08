@@ -47,6 +47,9 @@ function Landing() {
               Start an interview <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
+          <Button size="lg" variant="outline" asChild>
+            <Link to="/admin">Admin console</Link>
+          </Button>
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-3">
