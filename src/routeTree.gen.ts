@@ -10,16 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as ApiInterviewRouteImport } from './routes/api/interview'
 import { Route as InterviewCandidateIdRouteImport } from './routes/interview.$candidateId'
 import { Route as ApiInterviewFinishRouteImport } from './routes/api/interview/finish'
+import { Route as ApiInterviewListRouteImport } from './routes/api/interview/list'
 import { Route as ApiInterviewMessageRouteImport } from './routes/api/interview/message'
 import { Route as ApiInterviewStartRouteImport } from './routes/api/interview/start'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiHealthRoute = ApiHealthRouteImport.update({
@@ -42,6 +49,11 @@ const ApiInterviewFinishRoute = ApiInterviewFinishRouteImport.update({
   path: '/finish',
   getParentRoute: () => ApiInterviewRoute,
 } as any)
+const ApiInterviewListRoute = ApiInterviewListRouteImport.update({
+  id: '/list',
+  path: '/list',
+  getParentRoute: () => ApiInterviewRoute,
+} as any)
 const ApiInterviewMessageRoute = ApiInterviewMessageRouteImport.update({
   id: '/message',
   path: '/message',
@@ -55,29 +67,35 @@ const ApiInterviewStartRoute = ApiInterviewStartRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/api/health': typeof ApiHealthRoute
   '/api/interview': typeof ApiInterviewRouteWithChildren
   '/interview/$candidateId': typeof InterviewCandidateIdRoute
   '/api/interview/finish': typeof ApiInterviewFinishRoute
+  '/api/interview/list': typeof ApiInterviewListRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
   '/api/interview/start': typeof ApiInterviewStartRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/api/health': typeof ApiHealthRoute
   '/api/interview': typeof ApiInterviewRouteWithChildren
   '/interview/$candidateId': typeof InterviewCandidateIdRoute
   '/api/interview/finish': typeof ApiInterviewFinishRoute
+  '/api/interview/list': typeof ApiInterviewListRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
   '/api/interview/start': typeof ApiInterviewStartRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/api/health': typeof ApiHealthRoute
   '/api/interview': typeof ApiInterviewRouteWithChildren
   '/interview/$candidateId': typeof InterviewCandidateIdRoute
   '/api/interview/finish': typeof ApiInterviewFinishRoute
+  '/api/interview/list': typeof ApiInterviewListRoute
   '/api/interview/message': typeof ApiInterviewMessageRoute
   '/api/interview/start': typeof ApiInterviewStartRoute
 }
@@ -85,34 +103,41 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/api/health'
     | '/api/interview'
     | '/interview/$candidateId'
     | '/api/interview/finish'
+    | '/api/interview/list'
     | '/api/interview/message'
     | '/api/interview/start'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/api/health'
     | '/api/interview'
     | '/interview/$candidateId'
     | '/api/interview/finish'
+    | '/api/interview/list'
     | '/api/interview/message'
     | '/api/interview/start'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/api/health'
     | '/api/interview'
     | '/interview/$candidateId'
     | '/api/interview/finish'
+    | '/api/interview/list'
     | '/api/interview/message'
     | '/api/interview/start'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   ApiHealthRoute: typeof ApiHealthRoute
   ApiInterviewRoute: typeof ApiInterviewRouteWithChildren
   InterviewCandidateIdRoute: typeof InterviewCandidateIdRoute
@@ -125,6 +150,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/health': {
@@ -155,6 +187,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiInterviewFinishRouteImport
       parentRoute: typeof ApiInterviewRoute
     }
+    '/api/interview/list': {
+      id: '/api/interview/list'
+      path: '/list'
+      fullPath: '/api/interview/list'
+      preLoaderRoute: typeof ApiInterviewListRouteImport
+      parentRoute: typeof ApiInterviewRoute
+    }
     '/api/interview/message': {
       id: '/api/interview/message'
       path: '/message'
@@ -174,12 +213,14 @@ declare module '@tanstack/react-router' {
 
 interface ApiInterviewRouteChildren {
   ApiInterviewFinishRoute: typeof ApiInterviewFinishRoute
+  ApiInterviewListRoute: typeof ApiInterviewListRoute
   ApiInterviewMessageRoute: typeof ApiInterviewMessageRoute
   ApiInterviewStartRoute: typeof ApiInterviewStartRoute
 }
 
 const ApiInterviewRouteChildren: ApiInterviewRouteChildren = {
   ApiInterviewFinishRoute: ApiInterviewFinishRoute,
+  ApiInterviewListRoute: ApiInterviewListRoute,
   ApiInterviewMessageRoute: ApiInterviewMessageRoute,
   ApiInterviewStartRoute: ApiInterviewStartRoute,
 }
@@ -190,6 +231,7 @@ const ApiInterviewRouteWithChildren = ApiInterviewRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   ApiHealthRoute: ApiHealthRoute,
   ApiInterviewRoute: ApiInterviewRouteWithChildren,
   InterviewCandidateIdRoute: InterviewCandidateIdRoute,

@@ -26,3 +26,8 @@ function sweep() {
   const now = Date.now();
   for (const [id, s] of store) if (now - s.updatedAt > TTL_MS) store.delete(id);
 }
+
+export function listInterviews(): InterviewState[] {
+  sweep();
+  return [...store.values()].sort((a, b) => b.updatedAt - a.updatedAt);
+}
