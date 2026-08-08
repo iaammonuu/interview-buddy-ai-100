@@ -1,354 +1,780 @@
 import type { CurriculumDay } from "@/types/interview";
 
 /**
- * SYNTHETIC SEED DATA.
- * No curriculum file was supplied with the brief, so this is a representative
- * 31-day enterprise AI engineering cohort. Replace this array with the real
- * curriculum export and everything downstream (planning, coverage, feedback)
- * adapts automatically.
+ * REAL COHORT CURRICULUM.
+ * Source: curriculum.json supplied with the brief ("AI Cohort · 31 days · 8 modules").
  */
+export const cohortName = "AI Cohort \u00b7 31 days \u00b7 8 modules";
+
 export const curriculum: CurriculumDay[] = [
   {
-    day: 1,
-    module: "Foundations",
-    title: "LLM Fundamentals & Tokenization",
-    topics: ["Transformer intuition", "Tokenization", "Context windows", "Sampling parameters"],
-    objectives: [
-      "Explain how token limits shape application design",
-      "Reason about temperature, top-p and determinism",
+    "day": 1,
+    "module": "1. Environment & Tooling",
+    "title": "VS Code & Python Environment Setup",
+    "type": "SETUP",
+    "topics": [
+      "Install VS Code and Python on your machine",
+      "Configure the Python extension and Pylance",
+      "and activate a project virtual environment (.venv)",
+      "Run and debug your first Python program inside VS Code"
     ],
-    tools: ["OpenAI API", "tiktoken"],
+    "objectives": [
+      "Install VS Code and Python on your machine",
+      "Configure the Python extension and Pylance",
+      "Create and activate a project virtual environment (.venv)",
+      "Run and debug your first Python program inside VS Code",
+      "Verify the development environment is ready for the remaining course"
+    ],
+    "tools": [
+      "VS Code",
+      "Python",
+      "Python Extension",
+      "Pylance",
+      "Virtual Environment"
+    ]
   },
   {
-    day: 2,
-    module: "Foundations",
-    title: "Prompt Engineering Patterns",
-    topics: ["System prompts", "Few-shot prompting", "Chain-of-thought alternatives", "Delimiters"],
-    objectives: [
-      "Design prompts that are testable and version controlled",
-      "Choose between zero-shot, few-shot and structured prompting",
+    "day": 2,
+    "module": "1. Environment & Tooling",
+    "title": "Local LLM & AI Coding Assistant Setup",
+    "type": "SETUP",
+    "topics": [
+      "Install Ollama and download a local coding model",
+      "Verify the local model works through the Ollama CLI",
+      "Connect VS Code to the local model",
+      "Generate code"
     ],
-    tools: ["OpenAI API", "Prompt templates"],
+    "objectives": [
+      "Install Ollama and download a local coding model",
+      "Verify the local model works through the Ollama CLI",
+      "Connect VS Code to the local model using GitHub Copilot or Cline",
+      "Generate code using the local AI assistant",
+      "Confirm the complete AI coding workflow works offline"
+    ],
+    "tools": [
+      "Ollama",
+      "Qwen2.5-Coder",
+      "GitHub Copilot",
+      "Cline"
+    ]
   },
   {
-    day: 3,
-    module: "Foundations",
-    title: "Structured Outputs & Schema Validation",
-    topics: ["JSON mode", "Function/tool schemas", "Schema validation", "Repair loops"],
-    objectives: [
-      "Guarantee machine-parsable model output",
-      "Recover gracefully from malformed generations",
+    "day": 3,
+    "module": "1. Environment & Tooling",
+    "title": "First AI Project, React Frontend & GitHub",
+    "type": "BUILD",
+    "topics": [
+      "a command-line chatbot powered by your local Ollama model",
+      "Scaffold a FastAPI backend with a health endpoint",
+      "a React application",
+      "Connect the React frontend with the FastAPI backend"
     ],
-    tools: ["Zod", "JSON Schema"],
+    "objectives": [
+      "Build a command-line chatbot powered by your local Ollama model",
+      "Scaffold a FastAPI backend with a health endpoint",
+      "Create a React application using Vite",
+      "Connect the React frontend with the FastAPI backend",
+      "Initialize Git, commit the project, and publish it to GitHub"
+    ],
+    "tools": [
+      "Python",
+      "Ollama",
+      "FastAPI",
+      "React",
+      "Vite",
+      "Git",
+      "GitHub"
+    ]
   },
   {
-    day: 4,
-    module: "Foundations",
-    title: "Embeddings & Semantic Similarity",
-    topics: ["Embedding models", "Cosine similarity", "Dimensionality", "Normalization"],
-    objectives: [
-      "Select an embedding model for a domain",
-      "Explain why similarity is not relevance",
+    "day": 4,
+    "module": "2. Data Foundations",
+    "title": "Reading & Processing Structured Data",
+    "type": "BUILD",
+    "topics": [
+      "synthetic healthcare plans and claims datasets",
+      "Load and clean structured CSV data",
+      "Store the processed data in a SQLite database",
+      "Write SQL queries to answer common healthcare questions"
     ],
-    tools: ["text-embedding-3", "NumPy"],
+    "objectives": [
+      "Create synthetic healthcare plans and claims datasets",
+      "Load and clean structured CSV data using Pandas",
+      "Store the processed data in a SQLite database",
+      "Write SQL queries to answer common healthcare questions",
+      "Document reusable SQL queries for later chatbot integration"
+    ],
+    "tools": [
+      "Pandas",
+      "SQLite",
+      "SQL",
+      "SQLAlchemy"
+    ]
   },
   {
-    day: 5,
-    module: "Retrieval",
-    title: "Vector Databases",
-    topics: ["Indexes (HNSW, IVF)", "Metadata filtering", "Upserts", "Namespaces"],
-    objectives: [
-      "Choose an index type given recall and latency targets",
-      "Design a metadata schema for multi-tenant retrieval",
+    "day": 5,
+    "module": "2. Data Foundations",
+    "title": "Reading & Processing Unstructured Data",
+    "type": "BUILD",
+    "topics": [
+      "Extract text from healthcare PDFs and Word documents",
+      "Perform OCR on scanned enrollment forms",
+      "Scrape useful content from a public healthcare webpage",
+      "Clean and normalize extracted text from multiple sources"
     ],
-    tools: ["pgvector", "Pinecone", "Qdrant"],
+    "objectives": [
+      "Extract text from healthcare PDFs and Word documents",
+      "Perform OCR on scanned enrollment forms",
+      "Scrape useful content from a public healthcare webpage",
+      "Clean and normalize extracted text from multiple sources",
+      "Store the processed text files for knowledge-base creation"
+    ],
+    "tools": [
+      "pdfplumber",
+      "PyPDF",
+      "python-docx",
+      "Tesseract OCR",
+      "BeautifulSoup",
+      "Requests"
+    ]
   },
   {
-    day: 6,
-    module: "Retrieval",
-    title: "Chunking & Document Processing",
-    topics: ["Fixed vs semantic chunking", "Overlap", "Parsing PDFs", "Metadata enrichment"],
-    objectives: [
-      "Design a chunking strategy for heterogeneous documents",
-      "Explain the recall/precision impact of chunk size",
+    "day": 6,
+    "module": "2. Data Foundations",
+    "title": "Building the Knowledge Base",
+    "type": "BUILD",
+    "topics": [
+      "Convert structured and unstructured healthcare data into a unified knowledge base",
+      "Split long documents into retrieval-friendly chunks",
+      "Attach metadata such as source, plan type, and document section to every chunk",
+      "Export all processed records into a knowledge_base.jsonl file"
     ],
-    tools: ["Unstructured", "LangChain splitters"],
+    "objectives": [
+      "Convert structured and unstructured healthcare data into a unified knowledge base",
+      "Split long documents into retrieval-friendly chunks",
+      "Attach metadata such as source, plan type, and document section to every chunk",
+      "Export all processed records into a knowledge_base.jsonl file",
+      "Validate chunk quality before using them for embeddings"
+    ],
+    "tools": [
+      "LangChain Text Splitters",
+      "JSONL",
+      "Python"
+    ]
   },
   {
-    day: 7,
-    module: "Retrieval",
-    title: "RAG Pipeline Architecture",
-    topics: ["Ingestion", "Retrieval", "Grounded generation", "Citations"],
-    objectives: [
-      "Build an end-to-end RAG pipeline",
-      "Enforce grounding and citation of sources",
+    "day": 7,
+    "module": "3. Embeddings & Vector Search",
+    "title": "Embeddings Explained",
+    "type": "AI_CORE",
+    "topics": [
+      "how text is converted into vector embeddings",
+      "Generate embeddings for every knowledge base chunk",
+      "Store embeddings alongside the original documents",
+      "Visualize embedding clusters"
     ],
-    tools: ["pgvector", "LangChain"],
+    "objectives": [
+      "Understand how text is converted into vector embeddings",
+      "Generate embeddings for every knowledge base chunk",
+      "Store embeddings alongside the original documents",
+      "Visualize embedding clusters using PCA",
+      "Analyze whether similar healthcare concepts cluster together"
+    ],
+    "tools": [
+      "Sentence Transformers",
+      "OpenAI Embeddings",
+      "Scikit-learn",
+      "Matplotlib"
+    ]
   },
   {
-    day: 8,
-    module: "Retrieval",
-    title: "Hybrid Search & Re-ranking",
-    topics: ["BM25", "Reciprocal rank fusion", "Cross-encoder re-rankers", "Query rewriting"],
-    objectives: [
-      "Combine lexical and vector retrieval",
-      "Quantify the value of a re-ranking stage",
+    "day": 8,
+    "module": "3. Embeddings & Vector Search",
+    "title": "Vector Databases Overview",
+    "type": "BUILD",
+    "topics": [
+      "Learn the role of vector databases in RAG applications",
+      "Set up a local Chroma vector database",
+      "a cloud-based Pinecone index for comparison",
+      "Compare local and managed vector database solutions"
     ],
-    tools: ["BM25", "Cohere Rerank"],
+    "objectives": [
+      "Learn the role of vector databases in RAG applications",
+      "Set up a local Chroma vector database",
+      "Create a cloud-based Pinecone index for comparison",
+      "Compare local and managed vector database solutions",
+      "Select the most suitable database for the chatbot project"
+    ],
+    "tools": [
+      "ChromaDB",
+      "Pinecone"
+    ]
   },
   {
-    day: 9,
-    module: "Retrieval",
-    title: "RAG Failure Modes",
-    topics: ["Hallucination", "Stale index", "Irrelevant retrieval", "Conflicting sources"],
-    objectives: [
-      "Diagnose whether a bad answer is a retrieval or generation failure",
-      "Design guardrails for low-confidence retrieval",
+    "day": 9,
+    "module": "3. Embeddings & Vector Search",
+    "title": "Building & Populating the Vector Database",
+    "type": "BUILD",
+    "topics": [
+      "Load knowledge base embeddings into the vector database",
+      "Store documents together with metadata for filtering",
+      "Verify that every knowledge base chunk has been indexed",
+      "Test semantic search with healthcare-related questions"
     ],
-    tools: ["Ragas", "Custom eval harness"],
+    "objectives": [
+      "Load knowledge base embeddings into the vector database",
+      "Store documents together with metadata for filtering",
+      "Verify that every knowledge base chunk has been indexed",
+      "Test semantic search with healthcare-related questions",
+      "Evaluate retrieval quality and metadata filtering"
+    ],
+    "tools": [
+      "ChromaDB",
+      "Sentence Transformers"
+    ]
   },
   {
-    day: 10,
-    module: "Evaluation",
-    title: "Evaluating RAG Systems",
-    topics: ["Recall@k", "Faithfulness", "Answer relevance", "Golden datasets"],
-    objectives: [
-      "Build a golden dataset from real traffic",
-      "Separate retrieval metrics from generation metrics",
+    "day": 10,
+    "module": "3. Embeddings & Vector Search",
+    "title": "The Retrieval & Matching Engine",
+    "type": "SHIP_IT",
+    "topics": [
+      "a query router that decides between SQL, vector search, or hybrid retrieval",
+      "Implement structured data lookup for plans and claims",
+      "Implement semantic retrieval from the vector database",
+      "Merge and deduplicate results from multiple retrieval sources"
     ],
-    tools: ["Ragas", "Promptfoo"],
+    "objectives": [
+      "Build a query router that decides between SQL, vector search, or hybrid retrieval",
+      "Implement structured data lookup for plans and claims",
+      "Implement semantic retrieval from the vector database",
+      "Merge and deduplicate results from multiple retrieval sources",
+      "Evaluate retrieval accuracy using a diverse set of healthcare questions"
+    ],
+    "tools": [
+      "SQLite",
+      "ChromaDB",
+      "Python"
+    ]
   },
   {
-    day: 11,
-    module: "Evaluation",
-    title: "LLM-as-Judge & Offline Evals",
-    topics: ["Judge prompts", "Bias and position effects", "Pairwise comparison", "Calibration"],
-    objectives: [
-      "Design a defensible LLM-as-judge rubric",
-      "Know when human review is mandatory",
+    "day": 11,
+    "module": "4. LLM Core, Prompting & Fine-Tuning",
+    "title": "RAG End-to-End & LLM API Basics",
+    "type": "BUILD",
+    "topics": [
+      "Connect the retrieval engine to an LLM to build a complete RAG pipeline",
+      "Configure a local or hosted LLM provider",
+      "a grounded prompt that answers only from retrieved context",
+      "Generate answers"
     ],
-    tools: ["Promptfoo", "Braintrust"],
+    "objectives": [
+      "Connect the retrieval engine to an LLM to build a complete RAG pipeline",
+      "Configure a local or hosted LLM provider using the OpenAI-compatible SDK",
+      "Create a grounded prompt that answers only from retrieved context",
+      "Generate answers using retrieved knowledge",
+      "Evaluate chatbot responses against the retrieval-only baseline"
+    ],
+    "tools": [
+      "OpenAI SDK",
+      "Ollama",
+      "Groq",
+      "Python"
+    ]
   },
   {
-    day: 12,
-    module: "Evaluation",
-    title: "Regression Testing for Prompts",
-    topics: ["Prompt versioning", "CI evals", "Golden outputs", "Drift detection"],
-    objectives: [
-      "Gate prompt changes behind automated evals",
-      "Detect silent model-upgrade regressions",
+    "day": 12,
+    "module": "4. LLM Core, Prompting & Fine-Tuning",
+    "title": "Prompt Engineering Fundamentals",
+    "type": "LEARN",
+    "topics": [
+      "zero-shot, few-shot, and chain-of-thought prompting",
+      "Design multiple system prompt variations for the chatbot",
+      "Compare prompts based on accuracy, compliance, and tone",
+      "Evaluate prompt performance"
     ],
-    tools: ["GitHub Actions", "Promptfoo"],
+    "objectives": [
+      "Understand zero-shot, few-shot, and chain-of-thought prompting",
+      "Design multiple system prompt variations for the chatbot",
+      "Compare prompts based on accuracy, compliance, and tone",
+      "Evaluate prompt performance using a fixed question set",
+      "Finalize the production-ready system prompt"
+    ],
+    "tools": [
+      "LLMs",
+      "Prompt Templates"
+    ]
   },
   {
-    day: 13,
-    module: "Agents",
-    title: "Tool Calling Fundamentals",
-    topics: ["Tool schemas", "Argument validation", "Tool result formatting", "Error surfaces"],
-    objectives: [
-      "Design narrow, well-described tools",
-      "Handle tool failures without derailing the agent",
+    "day": 13,
+    "module": "4. LLM Core, Prompting & Fine-Tuning",
+    "title": "Advanced Prompting: Function Calling & Structured Outputs",
+    "type": "BUILD",
+    "topics": [
+      "Define tool schemas for healthcare-related chatbot functions",
+      "Implement LLM function calling with automatic tool execution",
+      "Validate structured outputs",
+      "Log tool calls for debugging and auditing"
     ],
-    tools: ["AI SDK", "Zod"],
+    "objectives": [
+      "Define tool schemas for healthcare-related chatbot functions",
+      "Implement LLM function calling with automatic tool execution",
+      "Validate structured outputs using Pydantic models",
+      "Log tool calls for debugging and auditing",
+      "Test different user queries to verify correct tool selection"
+    ],
+    "tools": [
+      "OpenAI Function Calling",
+      "Pydantic",
+      "Python"
+    ]
   },
   {
-    day: 14,
-    module: "Agents",
-    title: "Agent Loops & Control Flow",
-    topics: ["ReAct", "Step limits", "Termination conditions", "Loop detection"],
-    objectives: [
-      "Bound an agent loop safely",
-      "Detect and break repetitive tool cycles",
+    "day": 14,
+    "module": "4. LLM Core, Prompting & Fine-Tuning",
+    "title": "Fine-Tuning: Concepts & When to Use It",
+    "type": "LEARN",
+    "topics": [
+      "when fine-tuning is more appropriate than prompting or RAG",
+      "Identify chatbot issues that fine-tuning can solve",
+      "a high-quality fine-tuning dataset",
+      "Validate and organize the dataset into training and test sets"
     ],
-    tools: ["AI SDK", "LangGraph"],
+    "objectives": [
+      "Understand when fine-tuning is more appropriate than prompting or RAG",
+      "Identify chatbot issues that fine-tuning can solve",
+      "Create a high-quality fine-tuning dataset",
+      "Validate and organize the dataset into training and test sets",
+      "Prepare the project for model fine-tuning"
+    ],
+    "tools": [
+      "JSONL",
+      "OpenAI",
+      "LoRA",
+      "QLoRA"
+    ]
   },
   {
-    day: 15,
-    module: "Agents",
-    title: "Multi-Agent Orchestration",
-    topics: ["Planner/worker split", "Handoffs", "Shared state", "Supervisor patterns"],
-    objectives: [
-      "Decide when multi-agent beats a single agent",
-      "Prevent context loss across handoffs",
+    "day": 15,
+    "module": "4. LLM Core, Prompting & Fine-Tuning",
+    "title": "Fine-Tuning: Hands-On with LoRA & QLoRA",
+    "type": "SHIP_IT",
+    "topics": [
+      "Train or fine-tune an LLM",
+      "Load and evaluate the fine-tuned model",
+      "Compare the base model and fine-tuned model on unseen test cases",
+      "Measure improvements in tone, consistency, and response quality"
     ],
-    tools: ["LangGraph", "AI SDK"],
+    "objectives": [
+      "Train or fine-tune an LLM using LoRA or the OpenAI fine-tuning workflow",
+      "Load and evaluate the fine-tuned model",
+      "Compare the base model and fine-tuned model on unseen test cases",
+      "Measure improvements in tone, consistency, and response quality",
+      "Document whether fine-tuning provides measurable benefits for the chatbot"
+    ],
+    "tools": [
+      "PEFT",
+      "Transformers",
+      "BitsAndBytes",
+      "OpenAI Fine-Tuning",
+      "LoRA"
+    ]
   },
   {
-    day: 16,
-    module: "Agents",
-    title: "Agent Memory & Context Management",
-    topics: ["Short vs long-term memory", "Summarization", "Context compaction", "Retrieval memory"],
-    objectives: [
-      "Keep long sessions inside the context budget",
-      "Choose what to persist and what to discard",
+    "day": 16,
+    "module": "5. Chatbot Application Build",
+    "title": "Chatbot Backend & API Integration",
+    "type": "BUILD",
+    "topics": [
+      "a /chat API endpoint for the healthcare chatbot",
+      "Integrate retrieval, function calling, and LLM response generation",
+      "Implement session-based conversation management",
+      "a conversation history endpoint"
     ],
-    tools: ["pgvector", "Redis"],
+    "objectives": [
+      "Create a /chat API endpoint for the healthcare chatbot",
+      "Integrate retrieval, function calling, and LLM response generation",
+      "Implement session-based conversation management",
+      "Build a conversation history endpoint",
+      "Test the complete backend API using Postman or cURL"
+    ],
+    "tools": [
+      "FastAPI",
+      "SQLite",
+      "Python"
+    ]
   },
   {
-    day: 17,
-    module: "Agents",
-    title: "Human-in-the-Loop & Approvals",
-    topics: ["Approval gates", "Irreversible actions", "Audit trails", "Escalation"],
-    objectives: [
-      "Identify actions that require human approval",
-      "Design an auditable approval flow",
+    "day": 17,
+    "module": "5. Chatbot Application Build",
+    "title": "Chatbot Frontend Development",
+    "type": "BUILD",
+    "topics": [
+      "an interactive chat interface for the chatbot",
+      "Connect the frontend to the backend chat API",
+      "Maintain conversation history across user interactions",
+      "Add a healthcare plan selector and new conversation option"
     ],
-    tools: ["AI SDK needsApproval", "Temporal"],
+    "objectives": [
+      "Build an interactive chat interface for the chatbot",
+      "Connect the frontend to the backend chat API",
+      "Maintain conversation history across user interactions",
+      "Add a healthcare plan selector and new conversation option",
+      "Validate end-to-end communication between frontend and backend"
+    ],
+    "tools": [
+      "Streamlit",
+      "Requests",
+      "UUID"
+    ]
   },
   {
-    day: 18,
-    module: "MCP",
-    title: "Model Context Protocol Basics",
-    topics: ["MCP servers", "Resources", "Tools", "Transport"],
-    objectives: [
-      "Explain what MCP standardizes and why it matters",
-      "Connect a client to an MCP server",
+    "day": 18,
+    "module": "5. Chatbot Application Build",
+    "title": "Full-Stack Integration & Streaming Responses",
+    "type": "BUILD",
+    "topics": [
+      "Implement real-time streaming responses from the LLM",
+      "Display generated tokens incrementally in the chat interface",
+      "Add loading indicators for a better user experience",
+      "Handle interrupted or failed streaming requests gracefully"
     ],
-    tools: ["MCP SDK"],
+    "objectives": [
+      "Implement real-time streaming responses from the LLM",
+      "Display generated tokens incrementally in the chat interface",
+      "Add loading indicators for a better user experience",
+      "Handle interrupted or failed streaming requests gracefully",
+      "Verify smooth end-to-end streaming between backend and frontend"
+    ],
+    "tools": [
+      "FastAPI",
+      "StreamingResponse",
+      "Server-Sent Events",
+      "Streamlit"
+    ]
   },
   {
-    day: 19,
-    module: "MCP",
-    title: "Building an MCP Server",
-    topics: ["Tool registration", "Auth", "Streaming", "Versioning"],
-    objectives: [
-      "Expose an internal system safely over MCP",
-      "Version tools without breaking clients",
+    "day": 19,
+    "module": "5. Chatbot Application Build",
+    "title": "Response Formatting & Rich Outputs",
+    "type": "BUILD",
+    "topics": [
+      "Add citations to chatbot responses",
+      "structured cards for claims and coverage summaries",
+      "Render Markdown content with tables, lists, and formatting",
+      "Validate structured outputs before displaying them"
     ],
-    tools: ["MCP SDK", "TypeScript"],
+    "objectives": [
+      "Add citations to chatbot responses using retrieved knowledge",
+      "Create structured cards for claims and coverage summaries",
+      "Render Markdown content with tables, lists, and formatting",
+      "Validate structured outputs before displaying them",
+      "Improve chatbot readability and response trustworthiness"
+    ],
+    "tools": [
+      "Pydantic",
+      "Markdown",
+      "Streamlit"
+    ]
   },
   {
-    day: 20,
-    module: "MCP",
-    title: "MCP in Production",
-    topics: ["OAuth", "Tool catalog overload", "Rate limits", "Observability"],
-    objectives: [
-      "Scope credentials per end user",
-      "Manage large or dynamic tool catalogs",
+    "day": 20,
+    "module": "5. Chatbot Application Build",
+    "title": "Conversation Memory & Context Management",
+    "type": "SHIP_IT",
+    "topics": [
+      "Persist conversation history across multiple user sessions",
+      "context-aware conversations",
+      "Implement automatic conversation summarization for long chats",
+      "Manage token limits while preserving important context"
     ],
-    tools: ["MCP SDK", "OAuth 2.1"],
+    "objectives": [
+      "Persist conversation history across multiple user sessions",
+      "Build context-aware conversations using previous messages",
+      "Implement automatic conversation summarization for long chats",
+      "Manage token limits while preserving important context",
+      "Ensure the chatbot remembers user preferences throughout a conversation"
+    ],
+    "tools": [
+      "SQLite",
+      "FastAPI",
+      "LLM",
+      "Token Management"
+    ]
   },
   {
-    day: 21,
-    module: "Safety",
-    title: "Prompt Injection & Untrusted Content",
-    topics: ["Direct and indirect injection", "Data vs instructions", "Sandboxing", "Allowlists"],
-    objectives: [
-      "Treat retrieved and user content as data",
-      "Contain the blast radius of a successful injection",
+    "day": 21,
+    "module": "6. Agentic AI & MCP",
+    "title": "Agentic Frameworks: LangChain Agents & Tool Use",
+    "type": "BUILD",
+    "topics": [
+      "Convert function-calling workflows into a reasoning agent",
+      "Wrap chatbot capabilities as reusable LangChain tools",
+      "a ReAct agent capable of selecting the correct tool automatically",
+      "Analyze reasoning traces to understand agent decision making"
     ],
-    tools: ["Guardrails", "Content filters"],
+    "objectives": [
+      "Convert function-calling workflows into a reasoning agent",
+      "Wrap chatbot capabilities as reusable LangChain tools",
+      "Build a ReAct agent capable of selecting the correct tool automatically",
+      "Analyze reasoning traces to understand agent decision making",
+      "Evaluate whether the agent chooses the right tools for healthcare queries"
+    ],
+    "tools": [
+      "LangChain",
+      "LangChain Agents",
+      "ReAct",
+      "Python"
+    ]
   },
   {
-    day: 22,
-    module: "Safety",
-    title: "Guardrails, PII & Compliance",
-    topics: ["PII redaction", "Output filtering", "Data residency", "Retention policy"],
-    objectives: [
-      "Redact sensitive data before it reaches a model",
-      "Document data flows for compliance review",
+    "day": 22,
+    "module": "6. Agentic AI & MCP",
+    "title": "Multi-Agent Orchestration",
+    "type": "BUILD",
+    "topics": [
+      "specialized agents for different healthcare domains",
+      "a router agent that delegates requests to the correct specialist",
+      "Implement a complete multi-agent workflow",
+      "Compare multi-agent performance with a single-agent architecture"
     ],
-    tools: ["Presidio", "Policy engines"],
+    "objectives": [
+      "Create specialized agents for different healthcare domains",
+      "Build a router agent that delegates requests to the correct specialist",
+      "Implement a complete multi-agent workflow",
+      "Compare multi-agent performance with a single-agent architecture",
+      "Identify scenarios where multiple agents provide measurable benefits"
+    ],
+    "tools": [
+      "CrewAI",
+      "LangGraph",
+      "Python"
+    ]
   },
   {
-    day: 23,
-    module: "Production",
-    title: "Streaming, Timeouts & Resilience",
-    topics: ["SSE streaming", "Timeouts", "Retries with backoff", "Idempotency"],
-    objectives: [
-      "Stream long generations without platform timeouts",
-      "Retry only what is safely retryable",
+    "day": 23,
+    "module": "6. Agentic AI & MCP",
+    "title": "Model Context Protocol (MCP)",
+    "type": "BUILD",
+    "topics": [
+      "the purpose of the Model Context Protocol",
+      "an MCP server exposing healthcare chatbot tools",
+      "Connect the MCP server to an MCP-compatible client",
+      "Expose multiple chatbot capabilities through standardized MCP tools"
     ],
-    tools: ["AI SDK", "Cloudflare Workers"],
+    "objectives": [
+      "Understand the purpose of the Model Context Protocol",
+      "Build an MCP server exposing healthcare chatbot tools",
+      "Connect the MCP server to an MCP-compatible client",
+      "Expose multiple chatbot capabilities through standardized MCP tools",
+      "Verify successful tool execution through live MCP interactions"
+    ],
+    "tools": [
+      "MCP Python SDK",
+      "Claude Desktop",
+      "Cline",
+      "Python"
+    ]
   },
   {
-    day: 24,
-    module: "Production",
-    title: "Caching & Cost Optimization",
-    topics: ["Prompt caching", "Semantic cache", "Model routing", "Token budgeting"],
-    objectives: [
-      "Cut cost per request without hurting quality",
-      "Route easy traffic to smaller models",
+    "day": 24,
+    "module": "6. Agentic AI & MCP",
+    "title": "Agentic Chatbot Integration",
+    "type": "SHIP_IT",
+    "topics": [
+      "Integrate agents, MCP tools, retrieval, and conversation memory",
+      "Replace mock tools with live MCP-powered tool calls",
+      "Implement retries, timeouts, and graceful error handling",
+      "Perform failure testing to validate chatbot reliability"
     ],
-    tools: ["Redis", "Model routers"],
+    "objectives": [
+      "Integrate agents, MCP tools, retrieval, and conversation memory",
+      "Replace mock tools with live MCP-powered tool calls",
+      "Implement retries, timeouts, and graceful error handling",
+      "Perform failure testing to validate chatbot reliability",
+      "Build a production-style agentic chatbot pipeline"
+    ],
+    "tools": [
+      "LangChain",
+      "MCP",
+      "FastAPI",
+      "Python"
+    ]
   },
   {
-    day: 25,
-    module: "Production",
-    title: "Latency Engineering",
-    topics: ["Time to first token", "Parallel retrieval", "Speculative prefetch", "Payload size"],
-    objectives: [
-      "Instrument and reduce p95 latency",
-      "Trade quality for speed deliberately",
+    "day": 25,
+    "module": "7. Evaluation, Security & Deployment",
+    "title": "Chatbot Evaluation & Testing",
+    "type": "SHIP_IT",
+    "topics": [
+      "a benchmark dataset covering representative healthcare questions",
+      "Evaluate chatbot responses for accuracy, grounding, and consistency",
+      "Measure retrieval quality and end-to-end response performance",
+      "Identify common failure cases and document improvement areas"
     ],
-    tools: ["OpenTelemetry", "Load testing"],
+    "objectives": [
+      "Create a benchmark dataset covering representative healthcare questions",
+      "Evaluate chatbot responses for accuracy, grounding, and consistency",
+      "Measure retrieval quality and end-to-end response performance",
+      "Identify common failure cases and document improvement areas",
+      "Establish baseline metrics before production deployment"
+    ],
+    "tools": [
+      "Python",
+      "Evaluation Dataset",
+      "Automated Testing"
+    ]
   },
   {
-    day: 26,
-    module: "Production",
-    title: "Observability & Tracing",
-    topics: ["Trace spans", "Token accounting", "Feedback capture", "Alerting"],
-    objectives: [
-      "Trace a request across retrieval, tools and generation",
-      "Alert on quality regressions, not just errors",
+    "day": 26,
+    "module": "7. Evaluation, Security & Deployment",
+    "title": "Performance Optimization & Cost Management",
+    "type": "OPTIMIZE",
+    "topics": [
+      "Measure token usage across the chatbot pipeline",
+      "Optimize retrieval and prompt size to reduce latency and cost",
+      "Implement response caching for repeated queries",
+      "Benchmark response time before and after optimization"
     ],
-    tools: ["OpenTelemetry", "Langfuse"],
+    "objectives": [
+      "Measure token usage across the chatbot pipeline",
+      "Optimize retrieval and prompt size to reduce latency and cost",
+      "Implement response caching for repeated queries",
+      "Benchmark response time before and after optimization",
+      "Document performance improvements using measurable metrics"
+    ],
+    "tools": [
+      "tiktoken",
+      "Python",
+      "FastAPI"
+    ]
   },
   {
-    day: 27,
-    module: "Production",
-    title: "Deployment & Environments",
-    topics: ["Edge vs node runtimes", "Secrets", "Blue/green rollout", "Config management"],
-    objectives: [
-      "Ship model changes behind a rollout gate",
-      "Keep provider keys out of client bundles",
+    "day": 27,
+    "module": "7. Evaluation, Security & Deployment",
+    "title": "Security, Privacy & Guardrails",
+    "type": "BUILD",
+    "topics": [
+      "Secure chatbot APIs against unauthorized access",
+      "Validate and sanitize user inputs before processing",
+      "Protect sensitive healthcare information throughout the pipeline",
+      "Implement prompt-injection and jailbreak safeguards"
     ],
-    tools: ["Cloudflare Workers", "Vercel"],
+    "objectives": [
+      "Secure chatbot APIs against unauthorized access",
+      "Validate and sanitize user inputs before processing",
+      "Protect sensitive healthcare information throughout the pipeline",
+      "Implement prompt-injection and jailbreak safeguards",
+      "Test common security scenarios and document mitigation strategies"
+    ],
+    "tools": [
+      "FastAPI",
+      "Python",
+      "Authentication",
+      "Input Validation"
+    ]
   },
   {
-    day: 28,
-    module: "Production",
-    title: "Scaling & Rate Limits",
-    topics: ["Provider quotas", "Queueing", "Backpressure", "Multi-provider failover"],
-    objectives: [
-      "Design for provider throttling",
-      "Fail over between providers without user impact",
+    "day": 28,
+    "module": "7. Evaluation, Security & Deployment",
+    "title": "Docker & Kubernetes Deployment",
+    "type": "SHIP_IT",
+    "topics": [
+      "Containerize the chatbot backend and frontend",
+      "Deploy the application to a Kubernetes cluster",
+      "Configure health checks and environment variables",
+      "Verify the deployed chatbot functions correctly"
     ],
-    tools: ["Queues", "Gateways"],
+    "objectives": [
+      "Containerize the chatbot backend and frontend using Docker",
+      "Deploy the application to a Kubernetes cluster",
+      "Configure health checks and environment variables",
+      "Verify the deployed chatbot functions correctly",
+      "Prepare the application for production hosting"
+    ],
+    "tools": [
+      "Docker",
+      "Kubernetes",
+      "FastAPI",
+      "React"
+    ]
   },
   {
-    day: 29,
-    module: "Production",
-    title: "Fine-tuning vs RAG vs Prompting",
-    topics: ["When to fine-tune", "Distillation", "Data requirements", "Maintenance cost"],
-    objectives: [
-      "Justify a fine-tune with data and cost evidence",
-      "Compare lifecycle costs of each approach",
+    "day": 29,
+    "module": "8. Production & Capstone",
+    "title": "Monitoring, Logging & Observability",
+    "type": "BUILD",
+    "topics": [
+      "Add structured logging throughout the chatbot pipeline",
+      "Monitor API performance and chatbot usage",
+      "Track failures, latency, and tool execution metrics",
+      "dashboards for production observability"
     ],
-    tools: ["Fine-tuning APIs", "LoRA"],
+    "objectives": [
+      "Add structured logging throughout the chatbot pipeline",
+      "Monitor API performance and chatbot usage",
+      "Track failures, latency, and tool execution metrics",
+      "Build dashboards for production observability",
+      "Use monitoring insights to improve chatbot reliability"
+    ],
+    "tools": [
+      "Python Logging",
+      "Prometheus",
+      "Grafana"
+    ]
   },
   {
-    day: 30,
-    module: "Capstone",
-    title: "Enterprise AI System Design",
-    topics: ["Requirements", "Reference architecture", "Failure analysis", "Rollout plan"],
-    objectives: [
-      "Present a defensible end-to-end architecture",
-      "Explain trade-offs to non-AI stakeholders",
+    "day": 30,
+    "module": "8. Production & Capstone",
+    "title": "Production Readiness & Final Testing",
+    "type": "SHIP_IT",
+    "topics": [
+      "Perform complete end-to-end testing of the chatbot",
+      "Validate retrieval, agent workflows, and frontend integration",
+      "Fix production issues discovered during testing",
+      "Complete deployment and operational documentation"
     ],
-    tools: ["Architecture diagrams"],
+    "objectives": [
+      "Perform complete end-to-end testing of the chatbot",
+      "Validate retrieval, agent workflows, and frontend integration",
+      "Fix production issues discovered during testing",
+      "Complete deployment and operational documentation",
+      "Prepare the chatbot for real-world production usage"
+    ],
+    "tools": [
+      "FastAPI",
+      "Docker",
+      "Kubernetes",
+      "Python"
+    ]
   },
   {
-    day: 31,
-    module: "Capstone",
-    title: "Capstone Ship & Review",
-    topics: ["Demo", "Post-mortem", "Roadmap", "Handover"],
-    objectives: [
-      "Ship a working system and defend the decisions behind it",
-      "Identify what you would change with more time",
+    "day": 31,
+    "module": "8. Production & Capstone",
+    "title": "Capstone Project & Final Demo",
+    "type": "CAPSTONE",
+    "topics": [
+      "Demonstrate the complete enterprise healthcare chatbot",
+      "Showcase retrieval, RAG, agents, MCP, and conversation memory",
+      "Present the deployed application with production architecture",
+      "Evaluate the chatbot"
     ],
-    tools: ["Everything above"],
-  },
+    "objectives": [
+      "Demonstrate the complete enterprise healthcare chatbot",
+      "Showcase retrieval, RAG, agents, MCP, and conversation memory",
+      "Present the deployed application with production architecture",
+      "Evaluate the chatbot using real-world scenarios",
+      "Publish the final project with source code and documentation"
+    ],
+    "tools": [
+      "FastAPI",
+      "React",
+      "LangChain",
+      "MCP",
+      "Docker",
+      "Kubernetes"
+    ]
+  }
 ];
 
 export const curriculumByDay = new Map(curriculum.map((d) => [d.day, d]));
